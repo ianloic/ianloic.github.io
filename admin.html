@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editable: Admin</title>
+
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+
+    <style>
+        .mdl-card, .mdl-spinner {
+            margin: 20px auto;
+        }
+        #loading {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="mdl-layout mdl-js-layout">
+
+        <header class="mdl-layout__header">
+            <div class="mdl-layout-icon"></div>
+            <div class="mdl-layout__header-row">
+                <span class="mdl-layout__title">Editable: Admin</span>
+            </div>
+        </header>
+
+    <div id="loading">
+        <div class="mdl-spinner mdl-js-spinner is-active"></div>
+    </div>
+
+    <div id="logged-out" style="display:none">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Welcome</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                If you have permission to edit this site simply tap the 'Log in' button below.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="admin.login()">
+                    Log in
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="logged-in" style="display:none">
+        <div class="mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Admin</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                Some functionality will go here.
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="admin.logout()">
+                    Log out
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // This is an admin page using GCS as a backend.
+        window.editable_admin = {
+            editable_backend: 'gcs',
+            gcs_api_key: 'AIzaSyAhpI8qfOpTsgQsCg7vuXAeXs6FyvLVgZ8',
+            gcs_client_id: '949649089867-jsod54o9lsv7lhah1ov9e0e7sq49pneu.apps.googleusercontent.com'
+        };
+
+        document.addEventListener('editable-authenticated', function (e) {
+            console.log('authed', e.detail);
+            document.getElementById('loading').style.display = 'none';
+            if (e.detail) {
+                document.getElementById('logged-out').style.display = 'none';
+                document.getElementById('logged-in').style.display = 'block';
+            } else {
+                document.getElementById('logged-out').style.display = 'block';
+                document.getElementById('logged-in').style.display = 'none';
+            }
+        });
+    </script>
+    <script src="http://localhost:8000/editable.js"></script>
+
+</div>
+</body>
+</html>
