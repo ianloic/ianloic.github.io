@@ -40,7 +40,15 @@
                 <h2 class="mdl-card__title-text">Welcome</h2>
             </div>
             <div class="mdl-card__supporting-text">
-                If you have permission to edit this site simply tap the 'Log in' button below.
+              Generate a personal access token with a scope of <code>public_repo</code> at:
+              <a href="https://github.com/settings/tokens/new">https://github.com/settings/tokens/new</a>
+
+            <form action="#">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" id="github_access_token">
+                    <label class="mdl-textfield__label" for="github_access_token">Access Token</label>
+                </div>
+            </form>
             </div>
             <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" onclick="admin.login()">
@@ -72,8 +80,6 @@
         // This is an admin page using GCS as a backend.
         window.editable_admin = {
             editable_backend: 'github',
-            github_client_id: '2d9369a7636a7270e16b',
-            github_client_secret: 'bff96576ef64bd11da1ffa59cd21813cfe3917ef',
         };
 
         document.addEventListener('editable-authenticated', function (e) {
