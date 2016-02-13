@@ -1,9 +1,26 @@
 <html><head>
     <title editable-bind="title">Editable test. goes here.</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.1/material.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        main {
+            margin: 30px;
+        }
+    </style>
 </head>
 <body>
-<h1 editable-name="title">Editable test. goes here.</h1>
-<section editable-name="body" editable-widget="multiline">hello, <i>worldzzz</i></section>
+<div class="mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout__title" editable-name="title">Editable test. goes here.</span>
+        </div>
+
+    </header>
+
+    <main class="mdl-layout__content" editable-name="body" editable-widget="multiline">hello, <i>worldzzz</i></main>
+</div>
 
 <script src="http://localhost:8000/editable.js"></script>
 
